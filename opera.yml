@@ -1,13 +1,19 @@
 ---
-- name: Instalar o Opera no Windows
-  hosts: all
+- name: Instalar o Opera Browser no Windows
+  hosts: windows_hosts
+  gather_facts: no
   tasks:
-    - name: Baixar o instalador do Opera
-      win_get_url:
-        url: https://download3.operacdn.com/pub/opera/desktop/{{ opera_version }}/win/Opera_{{ opera_version }}_Setup.exe
-        dest: C:\Temp\Opera_Setup.exe
+    - name: Copiar o instalador do Opera para o host Windows
+      win_copy:
+        src: /caminho/local/para/o/arquivo/opera_installer.exe
+        dest: C:\Temp\opera_installer.exe
 
-    - name: Instalar o Opera
+    - name: Instalar o Opera Browser
       win_shell: |
-        Start-Process -Wait -FilePath "C:\Temp\Opera_Setup.exe" -ArgumentList "/S"
-      ignore_errors: yes
+        $installArgs = "/Silent /InstallPath=C:\Program Files\Opera"
+        Start-Process -Wait -FilePath "C:\Temp\opera_installer.exe" -ArgumentList $installArgs
+
+    - name: Remover o instalador do Opera
+      win_file:
+        path: C:\Temp\opera_installer.exe
+        state: absent
