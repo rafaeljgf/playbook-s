@@ -1,6 +1,6 @@
 ---
 - name: Instalar o Opera Browser no Windows
-  hosts: windows_hosts
+  hosts: all
   gather_facts: no
   tasks:
     - name: Download do instalador do Opera
