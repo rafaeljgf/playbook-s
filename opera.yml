@@ -1,6 +1,6 @@
 ---
 - name: Instalar o Opera no Windows
-  hosts:
+  hosts: all
   tasks:
     - name: Baixar o instalador do Opera
       win_get_url:
