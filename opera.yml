@@ -6,12 +6,12 @@
     - name: Download do instalador do Opera
       win_get_url:
         url: "https://download.opera.com/download/get/?partner=www&opsys=Windows"
-        dest: C:\Temp\opera_installer.exe
+        dest: C:\01_disco\opera_installer.exe
 
     - name: Instalar o Opera
-      win_command: C:\Temp\opera_installer.exe /silent
+      win_command: C:\01_disco\opera_installer.exe /silent
 
     - name: Remover o instalador do Opera
       win_file:
-        path: C:\Temp\opera_installer.exe
+        path: C:\01_disco\opera_installer.exe
         state: absent
