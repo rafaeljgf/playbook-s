@@ -1,0 +1,13 @@
+---
+- name: Instalar o Opera no Windows
+  hosts: seus_hosts_windows
+  tasks:
+    - name: Baixar o instalador do Opera
+      win_get_url:
+        url: https://download3.operacdn.com/pub/opera/desktop/{{ opera_version }}/win/Opera_{{ opera_version }}_Setup.exe
+        dest: C:\Temp\Opera_Setup.exe
+
+    - name: Instalar o Opera
+      win_shell: |
+        Start-Process -Wait -FilePath "C:\Temp\Opera_Setup.exe" -ArgumentList "/S"
+      ignore_errors: yes
