@@ -1,12 +1,11 @@
 ---
-- hosts: all
-  become: true
+- name: Instalar Opera Browser no Windows
+  hosts: windows_host
+  gather_facts: no
   tasks:
-    - name: Baixar o instalador do browser Opera
-      win_get_url:
-        url: https://www.opera.com/download/installer.exe
-    - name: Instalar o browser Opera
-      win_package:
+    - name: Instalar o Opera Browser usando Chocolatey
+      win_chocolatey:
+        name: opera
         state: present
-    - name: Executar o browser Opera
-      win_shell: opera
+      become: yes
+      become_method: runas
