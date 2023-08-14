@@ -5,10 +5,8 @@
     - name: Baixar o instalador do browser Opera
       win_get_url:
         url: https://www.opera.com/download/installer.exe
-        dest: C:\Downloads\opera-installer.exe
     - name: Instalar o browser Opera
       win_package:
         state: present
-        source: C:\Downloads\opera-installer.exe
     - name: Executar o browser Opera
       win_shell: opera
