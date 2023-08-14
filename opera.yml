@@ -2,11 +2,13 @@
 - hosts: all
   become: true
   tasks:
+    - name: Baixar o instalador do browser Opera
+      win_get_url:
+        url: https://www.opera.com/download/installer.exe
+        dest: C:\Downloads\opera-installer.exe
     - name: Instalar o browser Opera
       win_package:
-        name: opera
         state: present
-  handlers:
-    - name: Reiniciar o computador
-      win_reboot:
-        force: yes
+        source: C:\Downloads\opera-installer.exe
+    - name: Executar o browser Opera
+      win_shell: opera
