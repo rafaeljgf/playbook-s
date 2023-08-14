@@ -1,6 +1,6 @@
 ---
 - name: Instalar Opera Browser no Windows
-  hosts: windows_host
+  hosts: all
   gather_facts: no
   tasks:
     - name: Instalar o Opera Browser usando Chocolatey
