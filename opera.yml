@@ -1,10 +1,15 @@
 ---
-- name: Instalar Opera Browser no Windows
-  hosts: all
-  gather_facts: no
+- name: Install Opera browser on Windows
+  hosts: windows_hosts
+  gather_facts: false
   tasks:
-    - name: Instalar o Opera Browser usando Chocolatey
-      win_chocolatey:
-        name: opera
-        state: present
-      become: yes
+    - name: Download Opera installer
+      win_get_url:
+        url: https://download.operachina.com/pub/opera/desktop/{{ opera_version }}/win/{{ opera_installer }}
+        dest: C:\Temp\opera_installer.exe
+      vars:
+        opera_version: 80.0.4170.63
+        opera_installer: Opera_80.0.4170.63_Setup_x64.exe
+
+    - name: Install Opera
+      win_shell: Start-Process -Wait -FilePath "C:\Temp\opera_installer.exe" -ArgumentList "/silent /launchopera=0"
